@@ -1,7 +1,13 @@
 package model;
 
+import java.util.Arrays;
+import java.util.List;
+
 // represents a purchase having a category and dollar amount
 public class Purchase {
+    protected List<String> categoryList = Arrays.asList(new String[]{"entertainment", "shopping", "dining",
+            "groceries", "travel"});
+
     private String category;
     private double value;
 
@@ -11,8 +17,7 @@ public class Purchase {
      *          if the given category is not one of five specific ones, it is set to "other"
      */
     public Purchase(String category, double value) {
-        if (!(category.equals("entertainment") || category.equals("shopping") || category.equals("dining")
-                || category.equals("groceries") || category.equals("travel"))) {
+        if (!(categoryList.contains(category))) {
             this.category = "other";
         } else {
             this.category = category;
