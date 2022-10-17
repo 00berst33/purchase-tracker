@@ -55,8 +55,8 @@ public class PurchaseApp {
         if (amount < 0.0) {
             System.out.println("Cannot add negative purchase. Please try again and enter a positive number.");
         } else {
-            System.out.println("Enter the category of the purchase ('entertainment', 'shopping', 'dining', "
-                    + "'groceries', 'travel'):");
+            System.out.println("Enter the category of the purchase (ex: 'entertainment', 'shopping', 'dining', "
+                    + "'groceries', 'travel', or other):");
             String category = scanner.next();
             Purchase purchase = new Purchase(category, amount);
             allPurchases.add(purchase);
@@ -72,6 +72,7 @@ public class PurchaseApp {
         int numDining = 0;
         int numGroceries = 0;
         int numTravel = 0;
+        int numOther = 0;
         for (Purchase purchase : allPurchases) {
             if (purchase.getCategory().equals("entertainment")) {
                 numEntertainment++;
@@ -81,8 +82,10 @@ public class PurchaseApp {
                 numDining++;
             } else if (purchase.getCategory().equals("groceries")) {
                 numGroceries++;
-            } else {
+            } else if (purchase.getCategory().equals("travel")) {
                 numTravel++;
+            } else {
+                numOther++;
             }
         }
 
@@ -93,6 +96,7 @@ public class PurchaseApp {
         System.out.println("Dining: " + ((double) numDining / numPurchases * 100) + "%");
         System.out.println("Groceries: " + ((double) numGroceries / numPurchases * 100) + "%");
         System.out.println("Travel: " + ((double) numTravel / numPurchases * 100) + "%");
+        System.out.println("Other: " + ((double) numOther / numPurchases * 100) + "%");
     }
 
     // EFFECTS: prints out each purchase made so far to the console
