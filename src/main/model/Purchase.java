@@ -1,10 +1,13 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.Arrays;
 import java.util.List;
 
 // represents a purchase having a category and dollar amount
-public class Purchase {
+public class Purchase implements Writable {
     protected List<String> categoryList = Arrays.asList(new String[]{"entertainment", "shopping", "dining",
             "groceries", "travel"});
 
@@ -31,5 +34,13 @@ public class Purchase {
 
     public double getValue() {
         return value;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("category", category);
+        json.put("value", value);
+        return json;
     }
 }

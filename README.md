@@ -27,3 +27,5 @@ than one normally would.
 - As a user, I want to be able to specify the category of a purchase
 - As a user, I want to be able to set a budget for a certain time period
 - As a user, I want to be able to see how my spending has changed over time
+- As a user, I want to be able to save my purchases made to file
+- As a user, I want to be able to load my purchases from file

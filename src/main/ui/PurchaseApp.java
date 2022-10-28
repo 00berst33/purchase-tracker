@@ -1,24 +1,34 @@
 package ui;
 
 import model.Purchase;
+import model.WorkRoom;
+import persistence.JsonWriter;
+import persistence.JsonReader;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 // purchase tracking application
 public class PurchaseApp {
+    private static final String JSON_STORE = "./data/workroom.json";
     private Scanner scanner = new Scanner(System.in);
-    private List<Purchase> allPurchases = new ArrayList<>();
-    private double budget;
+    //private double budget;
+    private WorkRoom workRoom;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
-    // EFFECTS: runs the application
-    public PurchaseApp() {
+    // EFFECTS: constructs workroom and runs the application
+    public PurchaseApp() throws FileNotFoundException {
+        workRoom = new WorkRoom("User's workroom");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runApp();
     }
 
     // MODIFIES: this
     // EFFECTS: gets user input until program ends
+    @SuppressWarnings("methodlength")
     public void runApp() {
         boolean run = true;
 
@@ -28,6 +38,9 @@ public class PurchaseApp {
             System.out.println("'dp' -> display purchases");
             System.out.println("'gs' -> get stats");
             System.out.println("'cb' -> change budget");
+            System.out.println("'db' -> display budget");
+            System.out.println("'sf' -> save to file");
+            System.out.println("'lf' -> load from file");
             System.out.println("'q' -> quit");
             String input = scanner.next();
 
@@ -39,6 +52,12 @@ public class PurchaseApp {
                 getStats();
             } else if (input.equals("cb")) {
                 changeBudget();
+            } else if (input.equals("db")) {
+                displayBudget();
+            } else if (input.equals("sf")) {
+                saveToFile();
+            } else if (input.equals("lf")) {
+                loadFromFile();
             } else if (input.equals("q")) {
                 run = false;
             } else {
@@ -59,7 +78,7 @@ public class PurchaseApp {
                     + "'groceries', 'travel', or other):");
             String category = scanner.next();
             Purchase purchase = new Purchase(category, amount);
-            allPurchases.add(purchase);
+            workRoom.addPurchase(purchase);
             System.out.println("Purchase of $" + amount + " under the " + category + " category has been added.");
         }
     }
@@ -73,7 +92,7 @@ public class PurchaseApp {
         int numGroceries = 0;
         int numTravel = 0;
         int numOther = 0;
-        for (Purchase purchase : allPurchases) {
+        for (Purchase purchase : workRoom.getPurchases()) {
             if (purchase.getCategory().equals("entertainment")) {
                 numEntertainment++;
             } else if (purchase.getCategory().equals("shopping")) {
@@ -89,7 +108,7 @@ public class PurchaseApp {
             }
         }
 
-        int numPurchases = allPurchases.size();
+        int numPurchases = workRoom.numPurchases();
         System.out.println("Purchase breakdown:");
         System.out.println("Entertainment: " + ((double) numEntertainment / numPurchases * 100) + "%");
         System.out.println("Shopping: " + ((double) numShopping / numPurchases * 100) + "%");
@@ -102,7 +121,7 @@ public class PurchaseApp {
     // EFFECTS: prints out each purchase made so far to the console
     public void displayPurchases() {
         int index = 0;
-        for (Purchase purchase : allPurchases) {
+        for (Purchase purchase : workRoom.getPurchases()) {
             System.out.println("Purchase " + index);
             index++;
             System.out.println("Amount: " + purchase.getValue());
@@ -115,11 +134,34 @@ public class PurchaseApp {
     public void changeBudget() {
         System.out.println("Enter the $ amount you would like your new budget to be: ");
         double newBudget = scanner.nextDouble();
-        this.budget = newBudget;
+        workRoom.changeBudget(newBudget);
+        //this.budget = newBudget;
         System.out.println("Budget has been changed to $" + newBudget);
     }
 
-    public double getBudget() {
-        return budget;
+    public void displayBudget() {
+        System.out.println("Your current budget is " + workRoom.getBudget());
+    }
+
+    // EFFECTS: saves the workroom to file
+    public void saveToFile() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(workRoom);
+            jsonWriter.close();
+            System.out.println("Saved " + workRoom.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // EFFECTS: loads the workroom from file
+    public void loadFromFile() {
+        try {
+            workRoom = jsonReader.read();
+            System.out.println("Loaded " + workRoom.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 }
