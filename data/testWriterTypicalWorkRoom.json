@@ -1,0 +1,14 @@
+{
+    "purchases": [
+        {
+            "category": "entertainment",
+            "value": 82.34
+        },
+        {
+            "category": "shopping",
+            "value": 200.01
+        }
+    ],
+    "name": "My work room",
+    "budget": 1234.56
+}

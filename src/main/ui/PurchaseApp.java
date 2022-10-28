@@ -13,7 +13,6 @@ import java.util.Scanner;
 public class PurchaseApp {
     private static final String JSON_STORE = "./data/workroom.json";
     private Scanner scanner = new Scanner(System.in);
-    //private double budget;
     private WorkRoom workRoom;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
@@ -135,7 +134,6 @@ public class PurchaseApp {
         System.out.println("Enter the $ amount you would like your new budget to be: ");
         double newBudget = scanner.nextDouble();
         workRoom.changeBudget(newBudget);
-        //this.budget = newBudget;
         System.out.println("Budget has been changed to $" + newBudget);
     }
 

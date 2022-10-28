@@ -27,5 +27,9 @@ than one normally would.
 - As a user, I want to be able to specify the category of a purchase
 - As a user, I want to be able to set a budget for a certain time period
 - As a user, I want to be able to see how my spending has changed over time
-- As a user, I want to be able to save my purchases made to file
-- As a user, I want to be able to load my purchases from file
+- As a user, I want to be able to save my budget and purchases made to file
+- As a user, I want to be able to load my budget and purchases made from file
+
+## Citations:
+The classes found in both persistence packages, and their implementations, were adapted from the sample application
+that can be found at the following link: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
