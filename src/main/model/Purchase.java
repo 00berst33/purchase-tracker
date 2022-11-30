@@ -12,7 +12,7 @@ public class Purchase implements Writable {
             "groceries", "travel"});
 
     private String category;
-    private double value;
+    private Double value;
 
     /* REQUIRES: value >= 0
      * MODIFIES: this

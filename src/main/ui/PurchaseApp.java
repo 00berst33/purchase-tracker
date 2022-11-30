@@ -17,6 +17,8 @@ public class PurchaseApp {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
+
+
     // EFFECTS: constructs workroom and runs the application
     public PurchaseApp() throws FileNotFoundException {
         workRoom = new WorkRoom("User's workroom");

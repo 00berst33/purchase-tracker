@@ -1,16 +1,23 @@
 package ui;
 
+import model.Purchase;
+import model.PurchaseTracker;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class GUI extends JFrame {
-    private static final int WIDTH = 500;
-    private static final int HEIGHT = 300;
+    private static final int WIDTH = 600;
+    private static final int HEIGHT = 400;
+    private PurchaseTracker pt;
     private KeyPad kp;
     private JDesktopPane desktop;
     private JInternalFrame controlPanel;
 
     public GUI() {
+        pt = new PurchaseTracker();
+
         desktop = new JDesktopPane();
         controlPanel = new JInternalFrame("Control Panel", false, false, false, false);
         controlPanel.setLayout(new BorderLayout());
@@ -33,8 +40,8 @@ public class GUI extends JFrame {
     private void addButtonPanel() {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(5,1));
-        buttonPanel.add(new JButton("Add Purchase"));
-        buttonPanel.add(new JButton("Display Purchases"));
+        buttonPanel.add(new JButton(new AddPurchaseAction()));
+        buttonPanel.add(new JButton(new DisplayPurchasesAction()));
         buttonPanel.add(new JButton("Get Stats"));
         buttonPanel.add(new JButton("Save to File"));
         buttonPanel.add(new JButton("Load from File"));
@@ -46,6 +53,33 @@ public class GUI extends JFrame {
         kp = new KeyPad();
         addKeyListener(kp);
         controlPanel.add(kp, BorderLayout.CENTER);
+    }
+
+    private class AddPurchaseAction extends AbstractAction {
+        AddPurchaseAction() {
+            super("Add Purchase");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            Purchase purchase = new Purchase("entertainment",Double.parseDouble(kp.getPurchase()));
+            kp.clearCode();
+
+            pt.addPurchase(purchase);
+        }
+    }
+
+    private class DisplayPurchasesAction extends AbstractAction {
+        DisplayPurchasesAction() {
+            super("Display Purchases");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            ScreenPrinter sp = new ScreenPrinter(GUI.this);
+            desktop.add(sp);
+            sp.printPurchases(pt);
+        }
     }
 
     public static void main(String[] args) {
