@@ -1,14 +1,8 @@
 {
-    "purchases": [
-        {
-            "category": "dining",
-            "value": 45.4
-        },
-        {
-            "category": "groceries",
-            "value": 900
-        }
-    ],
+    "purchases": [{
+        "category": "shopping",
+        "value": 34.54
+    }],
     "name": "User's workroom",
-    "budget": 500
+    "budget": 567
 }
