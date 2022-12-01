@@ -46,6 +46,7 @@ public class IconPanel extends JPanel {
             smiley = false;
         } else if (!over && !smiley) {
             this.label.setIcon(icon1);
+            smiley = true;
         }
     }
 }
