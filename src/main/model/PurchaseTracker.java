@@ -11,22 +11,27 @@ import persistence.JsonReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+//represents a purchase tracker
 public class PurchaseTracker {
     private static final String JSON_STORE = "./data/workroom.json";
     private WorkRoom workRoom;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
+    //EFFECTS: constructs workroom
     public PurchaseTracker() {
         workRoom = new WorkRoom("User's workroom");
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
     }
 
+    //EFFECTS: returns the purchases in the current workroom
     public List<Purchase> getPurchases() {
         return workRoom.getPurchases();
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds a given purchase to the current workroom
     public void addPurchase(Purchase purchase) {
         workRoom.addPurchase(purchase);
     }

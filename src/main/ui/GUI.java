@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+//represents the main window frame
 public class GUI extends JFrame {
     private static final int WIDTH = 600;
     private static final int HEIGHT = 400;
@@ -15,6 +16,7 @@ public class GUI extends JFrame {
     private JDesktopPane desktop;
     private JInternalFrame controlPanel;
 
+    //EFFECTS: sets up buttons, key pad, and window
     public GUI() {
         pt = new PurchaseTracker();
 
@@ -37,6 +39,7 @@ public class GUI extends JFrame {
         setVisible(true);
     }
 
+    //EFFECTS: helper for adding buttons
     private void addButtonPanel() {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(5,1));
@@ -49,12 +52,15 @@ public class GUI extends JFrame {
         controlPanel.add(buttonPanel, BorderLayout.WEST);
     }
 
+    //EFFECTS: helper for setting up key pad
     private void addKeyPad() {
         kp = new KeyPad();
         addKeyListener(kp);
         controlPanel.add(kp, BorderLayout.CENTER);
     }
 
+    //MODIFIES: workroom
+    //EFFECTS: represents action taken when a user wants to add a purchase to system
     private class AddPurchaseAction extends AbstractAction {
         AddPurchaseAction() {
             super("Add Purchase");
@@ -69,6 +75,7 @@ public class GUI extends JFrame {
         }
     }
 
+    //EFFECTS: represents action taken when a user wants to display current purchases
     private class DisplayPurchasesAction extends AbstractAction {
         DisplayPurchasesAction() {
             super("Display Purchases");
@@ -82,6 +89,7 @@ public class GUI extends JFrame {
         }
     }
 
+    //EFFECTS: represents action taken when a user wants to save to file
     private class SaveToFileAction extends AbstractAction {
         SaveToFileAction() {
             super("Save to File");
@@ -93,6 +101,7 @@ public class GUI extends JFrame {
         }
     }
 
+    //EFFECTS: represents action taken when a user wants to load from file
     private class LoadFromFileAction extends AbstractAction {
         LoadFromFileAction() {
             super("Load from File");

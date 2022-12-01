@@ -11,10 +11,7 @@ public class ScreenPrinter extends JInternalFrame {
     private static final int HEIGHT = 200;
     private JTextArea textArea;
 
-    /**
-     * Constructor sets up window in which log will be printed on screen
-     * @param parent  the parent component
-     */
+    //EFFECTS: constructs window in which log of purchases will be printed
     public ScreenPrinter(Component parent) {
         super("Purchase log", false, true, false, false);
         textArea = new JTextArea();
@@ -26,6 +23,7 @@ public class ScreenPrinter extends JInternalFrame {
         setVisible(true);
     }
 
+    //EFFECTS: prints purchases in workroom to screen
     public void printPurchases(PurchaseTracker pt) {
         for (Purchase purchase : pt.getPurchases()) {
             textArea.setText(textArea.getText() + "$" + purchase.getValue() + "\n\n");
@@ -34,11 +32,7 @@ public class ScreenPrinter extends JInternalFrame {
         repaint();
     }
 
-    /**
-     * Sets the position of window in which log will be printed relative to
-     * parent
-     * @param parent  the parent component
-     */
+    //EFFECTS: sets position of the window the purchases will be printed to
     private void setPosition(Component parent) {
         setLocation(parent.getWidth() - getWidth() - 20,
                 parent.getHeight() - getHeight() - 20);
