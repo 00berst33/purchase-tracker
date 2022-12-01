@@ -28,10 +28,11 @@ public class BudgetChecker extends JInternalFrame {
     public void print(PurchaseTracker pt) {
         String string = "Your current budget is $" + pt.getBudget() + ".\n";
         double difference = pt.getBudget() - pt.getMoneySpent();
+        difference = Math.round(difference * 100.0) / 100.0;
         if (difference > 0) {
             string += "You are $" + difference + " away from hitting it.";
         } else if (difference < 0) {
-            string += "You are $" + (difference * -1) + " over it.";
+            string += "You are $" + (difference * - 1) + " over it.";
         } else {
             string += "You have hit it exactly.";
         }
