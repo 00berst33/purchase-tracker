@@ -32,6 +32,7 @@ public class GUI extends JFrame {
 
         addButtonPanel();
         addKeyPad();
+        addIcon();
 
         controlPanel.pack();
         controlPanel.setVisible(true);
@@ -48,8 +49,8 @@ public class GUI extends JFrame {
         buttonPanel.setLayout(new GridLayout(3,2));
         buttonPanel.add(new JButton(new AddPurchaseAction()));
         buttonPanel.add(new JButton(new DisplayPurchasesAction()));
-        buttonPanel.add(new JButton(new SetBudgetAction())); //TODO
-        buttonPanel.add(new JButton(new CheckBudgetAction())); //TODO
+        buttonPanel.add(new JButton(new SetBudgetAction()));
+        buttonPanel.add(new JButton(new CheckBudgetAction()));
         buttonPanel.add(new JButton(new SaveToFileAction()));
         buttonPanel.add(new JButton(new LoadFromFileAction()));
 
@@ -62,6 +63,34 @@ public class GUI extends JFrame {
         addKeyListener(kp);
         controlPanel.add(kp, BorderLayout.CENTER);
     }
+
+    //EFFECTS: helper for setting up icon
+    private void addIcon() {
+        JPanel iconPanel = new JPanel();
+        iconPanel.setLayout(new FlowLayout());
+        ImageIcon icon = createImageIcon("/ui/smiley.jpg","smiley guy");
+
+        Image image = icon.getImage();
+        Image newImg = image.getScaledInstance(120,120, Image.SCALE_SMOOTH);
+        icon = new ImageIcon(newImg);
+
+        JLabel label = new JLabel(icon);
+        iconPanel.add(label);
+        controlPanel.add(iconPanel, BorderLayout.EAST);
+    }
+
+    //EFFECTS: helper for creating icon and checking that the file path exists
+    private static ImageIcon createImageIcon(String path, String description) {
+        java.net.URL imgURL = GUI.class.getResource(path);
+        if (imgURL != null) {
+            return new ImageIcon(imgURL, description);
+        } else {
+            System.err.println("Couldn't find file: " + path);
+            return null;
+        }
+    }
+
+
 
     //EFFECTS: centers application on screen
     private void centerOnScreen() {

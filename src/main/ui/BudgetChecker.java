@@ -43,6 +43,6 @@ public class BudgetChecker extends JInternalFrame {
     //EFFECTS: sets position of the window the purchases will be printed to
     private void setPosition(Component parent) {
         setLocation(parent.getWidth() - getWidth() - 305,
-                parent.getHeight() - getHeight() - 30);
+                parent.getHeight() - getHeight() - 35);
     }
 }
