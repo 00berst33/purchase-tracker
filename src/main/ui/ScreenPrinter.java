@@ -28,7 +28,7 @@ public class ScreenPrinter extends JInternalFrame {
 
     public void printPurchases(PurchaseTracker pt) {
         for (Purchase purchase : pt.getPurchases()) {
-            textArea.setText(textArea.getText() + purchase.getValue() + "\n\n");
+            textArea.setText(textArea.getText() + "$" + purchase.getValue() + "\n\n");
         }
 
         repaint();

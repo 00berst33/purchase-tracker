@@ -42,9 +42,9 @@ public class GUI extends JFrame {
         buttonPanel.setLayout(new GridLayout(5,1));
         buttonPanel.add(new JButton(new AddPurchaseAction()));
         buttonPanel.add(new JButton(new DisplayPurchasesAction()));
-        buttonPanel.add(new JButton("Get Stats"));
-        buttonPanel.add(new JButton("Save to File"));
-        buttonPanel.add(new JButton("Load from File"));
+        buttonPanel.add(new JButton("Get Stats")); //TODO
+        buttonPanel.add(new JButton(new SaveToFileAction()));
+        buttonPanel.add(new JButton(new LoadFromFileAction()));
 
         controlPanel.add(buttonPanel, BorderLayout.WEST);
     }
@@ -79,6 +79,28 @@ public class GUI extends JFrame {
             ScreenPrinter sp = new ScreenPrinter(GUI.this);
             desktop.add(sp);
             sp.printPurchases(pt);
+        }
+    }
+
+    private class SaveToFileAction extends AbstractAction {
+        SaveToFileAction() {
+            super("Save to File");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            pt.saveToFile();
+        }
+    }
+
+    private class LoadFromFileAction extends AbstractAction {
+        LoadFromFileAction() {
+            super("Load from File");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            pt.loadFromFile();
         }
     }
 

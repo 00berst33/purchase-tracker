@@ -1,8 +1,8 @@
 {
     "purchases": [{
-        "category": "shopping",
-        "value": 34.54
+        "category": "entertainment",
+        "value": 78
     }],
     "name": "User's workroom",
-    "budget": 567
+    "budget": 0
 }
