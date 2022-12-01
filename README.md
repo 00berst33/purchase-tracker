@@ -30,13 +30,34 @@ than one normally would.
 - As a user, I want to be able to save my budget and purchases made to file
 - As a user, I want to be able to load my budget and purchases made from file
 
+# Instructions for Grader:
+- The first event related to adding Xs to Ys in my program is adding a purchase to a collection of purchases. You can 
+generate this event by entering a valid dollar amount with the key pad, then hitting the button that says "Add 
+Purchase". A window with a drop-down menu will then pop up, and ask you to specify the category of your purchase. Choose
+one and hit "OK". Hitting "Cancel" will remove the value you entered from the keypad and not add the purchase to the 
+system. Entering a non-valid amount, like 5.5.5, or 5.659, or hitting "Add Purchase" without having entered a number 
+into the key pad, will result in an error message, and the purchase will not be added to the system.
+- The second event related to adding Xs to Ys in my program is setting a budget and checking
+whether the purchases you have made so far exceed this budget. You can generate this event by first entering a 
+dollar amount with the key pad, like you did to add a purchase, but instead clicking the button "Set Budget" afterwards.
+Next, hitting the button "Check Budget" will open a window that displays your current budget and how far under or over
+it you are. Note that the window opened by "Check Budget" does not automatically update, but instead displays the
+state of the program at the time you pressed the button. To get an updated window after adding more purchases, you
+must close the old window by using the X in the top right, then again click "Check Budget." The button "Display
+Purchases" functions the same way. 
+- You can locate my visual component by observing the icon in the top right. If the user has not exceeded their budget,
+the emoji will be a smiley one. If the user spends more than their budget, it will become a sad face. If the user
+changes their budget so that it is again greater than the money they have spent, the emoji will return to a smiley
+face. The user's budget defaults to $0, so if you start the application and add a purchase without
+first setting a budget, the icon will immediately become a sad face.
+- You can save the state of my application by clicking the button "Save to File". A message will
+then pop up saying that the state has successfully been saved.
+- You can reload the state of my application by clicking the button "Load from File". A message will
+then pop up saying that the state of my application has been successfully loaded.
+
 ## Citations:
 The classes found in both persistence packages, and their implementations, were adapted from the sample application
 that can be found at the following link: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
-## To Do:
-- see statistics of purchases so far (by category) (fuck this actually)
-- actually use budget?
-- be able to set budget and see how close to it you are
-- workroom saves budget and separate value with total money spent thus far
-- remove the printing to console in PurchaseTracker
+The classes GUI, KeyPad, ScreenPrinter, and BudgetChecker were adapted from the AlarmSystem example given in class,
+and can be found at the following link: https://github.students.cs.ubc.ca/CPSC210/AlarmSystem

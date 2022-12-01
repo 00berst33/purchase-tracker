@@ -98,7 +98,7 @@ public class GUI extends JFrame {
                     Purchase purchase = new Purchase((String) category, value);
                     pt.addPurchase(purchase);
                 }
-            } catch (MultipleDecimalPointsException | TooManySigFigsException e) {
+            } catch (NumberFormatException | MultipleDecimalPointsException | TooManySigFigsException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "System Error",
                         JOptionPane.ERROR_MESSAGE);
             }
@@ -133,11 +133,13 @@ public class GUI extends JFrame {
             try {
                 double budget = Double.parseDouble(kp.getNumber());
                 pt.changeBudget(budget);
-            } catch (MultipleDecimalPointsException | TooManySigFigsException e) {
+            } catch (NumberFormatException | MultipleDecimalPointsException | TooManySigFigsException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "System Error",
                         JOptionPane.ERROR_MESSAGE);
             }
             kp.clearNumber();
+            boolean over = pt.getBudget() - pt.getMoneySpent() < 0;
+            ip.updateIcon(over);
         }
     }
 
