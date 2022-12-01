@@ -45,10 +45,11 @@ public class GUI extends JFrame {
     //EFFECTS: helper for adding buttons
     private void addButtonPanel() {
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(5,1));
+        buttonPanel.setLayout(new GridLayout(3,2));
         buttonPanel.add(new JButton(new AddPurchaseAction()));
         buttonPanel.add(new JButton(new DisplayPurchasesAction()));
-        buttonPanel.add(new JButton("Get Stats")); //TODO
+        buttonPanel.add(new JButton(new SetBudgetAction())); //TODO
+        buttonPanel.add(new JButton(new CheckBudgetAction())); //TODO
         buttonPanel.add(new JButton(new SaveToFileAction()));
         buttonPanel.add(new JButton(new LoadFromFileAction()));
 
@@ -85,14 +86,14 @@ public class GUI extends JFrame {
                         JOptionPane.INFORMATION_MESSAGE, null,
                         possibleValues, possibleValues[0]);
                 if (category != null) {
-                    Purchase purchase = new Purchase((String) category, Double.parseDouble(kp.getPurchase()));
+                    Purchase purchase = new Purchase((String) category, Double.parseDouble(kp.getNumber()));
                     pt.addPurchase(purchase);
                 }
             } catch (MultipleDecimalPointsException | TooManySigFigsException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "System Error",
                         JOptionPane.ERROR_MESSAGE);
             }
-            kp.clearCode();
+            kp.clearNumber();
         }
     }
 
@@ -107,6 +108,39 @@ public class GUI extends JFrame {
             ScreenPrinter sp = new ScreenPrinter(GUI.this);
             desktop.add(sp);
             sp.printPurchases(pt);
+        }
+    }
+
+    //EFFECTS: represents action taken when a user wants to set a budget
+    private class SetBudgetAction extends AbstractAction {
+        SetBudgetAction() {
+            super("Set Budget");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            try {
+                double budget = Double.parseDouble(kp.getNumber());
+                pt.changeBudget(budget);
+            } catch (MultipleDecimalPointsException | TooManySigFigsException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "System Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+            kp.clearNumber();
+        }
+    }
+
+    //EFFECTS: represents action taken when a user wants to check their budget and how close to it they are
+    private class CheckBudgetAction extends AbstractAction {
+        CheckBudgetAction() {
+            super("Check Budget");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            BudgetChecker bc = new BudgetChecker(GUI.this);
+            desktop.add(bc);
+            bc.print(pt);
         }
     }
 

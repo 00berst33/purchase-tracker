@@ -6,14 +6,15 @@ import model.PurchaseTracker;
 import javax.swing.*;
 import java.awt.*;
 
+//represents a screen printer for printing all purchases to screen
 public class ScreenPrinter extends JInternalFrame {
-    private static final int WIDTH = 300;
+    private static final int WIDTH = 295;
     private static final int HEIGHT = 200;
     private JTextArea textArea;
 
     //EFFECTS: constructs window in which log of purchases will be printed
     public ScreenPrinter(Component parent) {
-        super("Purchase log", false, true, false, false);
+        super("Purchase Log", false, true, false, false);
         textArea = new JTextArea();
         textArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(textArea);
@@ -34,7 +35,7 @@ public class ScreenPrinter extends JInternalFrame {
 
     //EFFECTS: sets position of the window the purchases will be printed to
     private void setPosition(Component parent) {
-        setLocation(parent.getWidth() - getWidth() - 20,
-                parent.getHeight() - getHeight() - 20);
+        setLocation(parent.getWidth() - getWidth() - 10,
+                parent.getHeight() - getHeight() - 30);
     }
 }

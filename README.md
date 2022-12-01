@@ -35,6 +35,8 @@ The classes found in both persistence packages, and their implementations, were 
 that can be found at the following link: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
 ## To Do:
-- specify category of purchase (with a pop-up window after clicking "Add Purchase"?)
-- see statistics of purchases so far (by category)
+- see statistics of purchases so far (by category) (fuck this actually)
 - actually use budget?
+- be able to set budget and see how close to it you are
+- workroom saves budget and separate value with total money spent thus far
+- remove the printing to console in PurchaseTracker

@@ -8,8 +8,6 @@ import java.util.List;
 import persistence.JsonWriter;
 import persistence.JsonReader;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 //represents a purchase tracker
 public class PurchaseTracker {
@@ -25,15 +23,28 @@ public class PurchaseTracker {
         jsonReader = new JsonReader(JSON_STORE);
     }
 
-    //EFFECTS: returns the purchases in the current workroom
     public List<Purchase> getPurchases() {
         return workRoom.getPurchases();
+    }
+
+    public double getBudget() {
+        return workRoom.getBudget();
+    }
+
+    public double getMoneySpent() {
+        return workRoom.getMoneySpent();
     }
 
     //MODIFIES: this
     //EFFECTS: adds a given purchase to the current workroom
     public void addPurchase(Purchase purchase) {
         workRoom.addPurchase(purchase);
+    }
+
+    //MODIEFIES: this
+    //EFFECTS: changes budget to a given amount
+    public void changeBudget(double budget) {
+        workRoom.changeBudget(budget);
     }
 
     // EFFECTS: saves the workroom to file

@@ -14,14 +14,14 @@ public class KeyPad extends JPanel implements KeyListener {
     private static final String CLR_STR = "CLR";
     private JButton[] keys;
     private JLabel label;
-    private String purchase;
+    private String number;
     private ClickHandler keyHandler;
 
     /**
      * Constructor creates keypad and code display area.
      */
     public KeyPad() {
-        purchase = "";
+        number = "";
         keyHandler = new ClickHandler();
         setLayout(new BorderLayout());
         JPanel keyPanel = new JPanel();
@@ -40,15 +40,15 @@ public class KeyPad extends JPanel implements KeyListener {
      * Gets code entered.
      * @return  code entered
      */
-    public String getPurchase() throws TooManySigFigsException, MultipleDecimalPointsException {
-        int decimalPoints = purchase.length() - purchase.replace(".","").length();
+    public String getNumber() throws TooManySigFigsException, MultipleDecimalPointsException {
+        int decimalPoints = number.length() - number.replace(".","").length();
         if (decimalPoints > 1) {
             throw new MultipleDecimalPointsException("multiple decimal points");
         } else if (decimalPoints == 0) {
-            return purchase;
+            return number;
         }
 
-        String substring = purchase.substring(purchase.indexOf(".") + 1);
+        String substring = number.substring(number.indexOf(".") + 1);
         int sigFigs = substring.length();
         for (int i = substring.length() - 1; i >= 0; i--) {
             if (substring.charAt(i) == '0') {
@@ -60,15 +60,15 @@ public class KeyPad extends JPanel implements KeyListener {
         if (sigFigs > 2) {
             throw new TooManySigFigsException("too many digits after decimal point");
         }
-        return purchase;
+        return number;
     }
 
 
     /**
      * Clears the code entered on the keypad
      */
-    public void clearCode() {
-        purchase = "";
+    public void clearNumber() {
+        number = "";
         label.setText(getLabel());
         label.repaint();
     }
@@ -102,7 +102,7 @@ public class KeyPad extends JPanel implements KeyListener {
      * @return  label for code display area
      */
     private String getLabel() {
-        return purchase;
+        return number;
     }
 
     /**
@@ -114,9 +114,9 @@ public class KeyPad extends JPanel implements KeyListener {
             JButton src = (JButton) e.getSource();
 
             if (src.getText().equals(CLR_STR)) {
-                purchase = "";
+                number = "";
             } else {
-                purchase = purchase + src.getText();
+                number = number + src.getText();
             }
 
             label.setText(getLabel());
