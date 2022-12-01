@@ -79,8 +79,15 @@ public class GUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent evt) {
             try {
-                Purchase purchase = new Purchase("entertainment", Double.parseDouble(kp.getPurchase()));
-                pt.addPurchase(purchase);
+                Object[] possibleValues = { "Entertainment", "Shopping", "Dining", "Groceries", "Travel", "Other" };
+                Object category = JOptionPane.showInputDialog(null,
+                        "Choose the category of your purchase:", "Input",
+                        JOptionPane.INFORMATION_MESSAGE, null,
+                        possibleValues, possibleValues[0]);
+                if (category != null) {
+                    Purchase purchase = new Purchase((String) category, Double.parseDouble(kp.getPurchase()));
+                    pt.addPurchase(purchase);
+                }
             } catch (MultipleDecimalPointsException | TooManySigFigsException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "System Error",
                         JOptionPane.ERROR_MESSAGE);

@@ -44,6 +44,8 @@ public class KeyPad extends JPanel implements KeyListener {
         int decimalPoints = purchase.length() - purchase.replace(".","").length();
         if (decimalPoints > 1) {
             throw new MultipleDecimalPointsException("multiple decimal points");
+        } else if (decimalPoints == 0) {
+            return purchase;
         }
 
         String substring = purchase.substring(purchase.indexOf(".") + 1);

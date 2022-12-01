@@ -8,8 +8,8 @@ import java.util.List;
 
 // represents a purchase having a category and dollar amount
 public class Purchase implements Writable {
-    protected List<String> categoryList = Arrays.asList(new String[]{"entertainment", "shopping", "dining",
-            "groceries", "travel"});
+    protected List<String> categoryList = Arrays.asList(new String[]{"Entertainment", "Shopping", "Dining",
+            "Groceries", "Travel"});
 
     private String category;
     private Double value;
@@ -21,7 +21,7 @@ public class Purchase implements Writable {
      */
     public Purchase(String category, double value) {
         if (!(categoryList.contains(category))) {
-            this.category = "other";
+            this.category = "Other";
         } else {
             this.category = category;
         }
