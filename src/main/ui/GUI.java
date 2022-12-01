@@ -15,6 +15,7 @@ public class GUI extends JFrame {
     private static final int HEIGHT = 400;
     private PurchaseTracker pt;
     private KeyPad kp;
+    private IconPanel ip;
     private JDesktopPane desktop;
     private JInternalFrame controlPanel;
 
@@ -66,31 +67,9 @@ public class GUI extends JFrame {
 
     //EFFECTS: helper for setting up icon
     private void addIcon() {
-        JPanel iconPanel = new JPanel();
-        iconPanel.setLayout(new FlowLayout());
-        ImageIcon icon = createImageIcon("/ui/smiley.jpg","smiley guy");
-
-        Image image = icon.getImage();
-        Image newImg = image.getScaledInstance(120,120, Image.SCALE_SMOOTH);
-        icon = new ImageIcon(newImg);
-
-        JLabel label = new JLabel(icon);
-        iconPanel.add(label);
-        controlPanel.add(iconPanel, BorderLayout.EAST);
+        ip = new IconPanel();
+        controlPanel.add(ip, BorderLayout.EAST);
     }
-
-    //EFFECTS: helper for creating icon and checking that the file path exists
-    private static ImageIcon createImageIcon(String path, String description) {
-        java.net.URL imgURL = GUI.class.getResource(path);
-        if (imgURL != null) {
-            return new ImageIcon(imgURL, description);
-        } else {
-            System.err.println("Couldn't find file: " + path);
-            return null;
-        }
-    }
-
-
 
     //EFFECTS: centers application on screen
     private void centerOnScreen() {
@@ -109,13 +88,14 @@ public class GUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent evt) {
             try {
+                double value = Double.parseDouble(kp.getNumber());
                 Object[] possibleValues = { "Entertainment", "Shopping", "Dining", "Groceries", "Travel", "Other" };
                 Object category = JOptionPane.showInputDialog(null,
                         "Choose the category of your purchase:", "Input",
                         JOptionPane.INFORMATION_MESSAGE, null,
                         possibleValues, possibleValues[0]);
                 if (category != null) {
-                    Purchase purchase = new Purchase((String) category, Double.parseDouble(kp.getNumber()));
+                    Purchase purchase = new Purchase((String) category, value);
                     pt.addPurchase(purchase);
                 }
             } catch (MultipleDecimalPointsException | TooManySigFigsException e) {
@@ -123,6 +103,8 @@ public class GUI extends JFrame {
                         JOptionPane.ERROR_MESSAGE);
             }
             kp.clearNumber();
+            boolean over = pt.getBudget() - pt.getMoneySpent() < 0;
+            ip.updateIcon(over);
         }
     }
 
