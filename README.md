@@ -37,6 +37,4 @@ that can be found at the following link: https://github.students.cs.ubc.ca/CPSC2
 ## To Do:
 - specify category of purchase (with a pop-up window after clicking "Add Purchase"?)
 - see statistics of purchases so far (by category)
-- error pop-up window if user enters invalid purchase
-- messages to confirm saving and loading
 - actually use budget?

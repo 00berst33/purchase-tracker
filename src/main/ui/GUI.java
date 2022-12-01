@@ -38,6 +38,7 @@ public class GUI extends JFrame {
         desktop.add(controlPanel);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        centerOnScreen();
         setVisible(true);
     }
 
@@ -59,6 +60,13 @@ public class GUI extends JFrame {
         kp = new KeyPad();
         addKeyListener(kp);
         controlPanel.add(kp, BorderLayout.CENTER);
+    }
+
+    //EFFECTS: centers application on screen
+    private void centerOnScreen() {
+        int width = Toolkit.getDefaultToolkit().getScreenSize().width;
+        int height = Toolkit.getDefaultToolkit().getScreenSize().height;
+        setLocation((width - getWidth()) / 2, (height - getHeight()) / 2);
     }
 
     //MODIFIES: workroom
@@ -104,6 +112,7 @@ public class GUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent evt) {
             pt.saveToFile();
+            JOptionPane.showMessageDialog(null, "Saved to File Successfully");
         }
     }
 
@@ -116,6 +125,7 @@ public class GUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent evt) {
             pt.loadFromFile();
+            JOptionPane.showMessageDialog(null, "Loaded from File Successfully");
         }
     }
 
