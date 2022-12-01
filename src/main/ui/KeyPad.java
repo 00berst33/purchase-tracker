@@ -1,5 +1,8 @@
 package ui;
 
+import model.exception.MultipleDecimalPointsException;
+import model.exception.TooManySigFigsException;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -37,9 +40,27 @@ public class KeyPad extends JPanel implements KeyListener {
      * Gets code entered.
      * @return  code entered
      */
-    public String getPurchase() {
+    public String getPurchase() throws TooManySigFigsException, MultipleDecimalPointsException {
+        int decimalPoints = purchase.length() - purchase.replace(".","").length();
+        if (decimalPoints > 1) {
+            throw new MultipleDecimalPointsException("multiple decimal points");
+        }
+
+        String substring = purchase.substring(purchase.indexOf(".") + 1);
+        int sigFigs = substring.length();
+        for (int i = substring.length() - 1; i >= 0; i--) {
+            if (substring.charAt(i) == '0') {
+                sigFigs--;
+            } else {
+                break;
+            }
+        }
+        if (sigFigs > 2) {
+            throw new TooManySigFigsException("too many digits after decimal point");
+        }
         return purchase;
     }
+
 
     /**
      * Clears the code entered on the keypad
@@ -79,20 +100,6 @@ public class KeyPad extends JPanel implements KeyListener {
      * @return  label for code display area
      */
     private String getLabel() {
-        /*
-        String label = "";
-        label = label + " ";
-        for (int i = 0; i < purchase.length(); i++) {
-            label = label + "X ";
-        }
-
-        for (int i = purchase.length(); i < AlarmCode.NUM_DIGITS; i++) {
-            label = label + "_ ";
-        }
-
-        return label;
-
-         */
         return purchase;
     }
 

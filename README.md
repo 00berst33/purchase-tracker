@@ -33,3 +33,10 @@ than one normally would.
 ## Citations:
 The classes found in both persistence packages, and their implementations, were adapted from the sample application
 that can be found at the following link: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
+## To Do:
+- specify category of purchase (with a pop-up window after clicking "Add Purchase"?)
+- see statistics of purchases so far (by category)
+- error pop-up window if user enters invalid purchase
+- messages to confirm saving and loading
+- actually use budget?

@@ -2,6 +2,8 @@ package ui;
 
 import model.Purchase;
 import model.PurchaseTracker;
+import model.exception.MultipleDecimalPointsException;
+import model.exception.TooManySigFigsException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -68,10 +70,14 @@ public class GUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent evt) {
-            Purchase purchase = new Purchase("entertainment",Double.parseDouble(kp.getPurchase()));
+            try {
+                Purchase purchase = new Purchase("entertainment", Double.parseDouble(kp.getPurchase()));
+                pt.addPurchase(purchase);
+            } catch (MultipleDecimalPointsException | TooManySigFigsException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "System Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
             kp.clearCode();
-
-            pt.addPurchase(purchase);
         }
     }
 
