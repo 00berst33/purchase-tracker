@@ -67,6 +67,8 @@ public class JsonReader {
         wr.addPurchase(purchase);
     }
 
+    // MODIFIES: wr
+    // EFFECTS: parses budget from JSON object and adds it to workroom
     private void addBudget(WorkRoom wr, JSONObject jsonObject) {
         double budget = jsonObject.getDouble("budget");
         wr.changeBudget(budget);

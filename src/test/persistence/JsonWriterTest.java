@@ -48,8 +48,8 @@ public class JsonWriterTest extends JsonTest {
         try {
             WorkRoom wr = new WorkRoom("My work room");
             wr.changeBudget(1234.56);
-            wr.addPurchase(new Purchase("entertainment", 82.34));
-            wr.addPurchase(new Purchase("shopping", 200.01));
+            wr.addPurchase(new Purchase("Entertainment", 82.34));
+            wr.addPurchase(new Purchase("Shopping", 200.01));
             JsonWriter writer = new JsonWriter("./data/testWriterTypicalWorkroom.json");
             writer.open();
             writer.write(wr);
@@ -61,8 +61,8 @@ public class JsonWriterTest extends JsonTest {
             assertEquals(1234.56, wr.getBudget());
             List<Purchase> purchases = wr.getPurchases();
             assertEquals(2, purchases.size());
-            checkPurchase("entertainment", 82.34, purchases.get(0));
-            checkPurchase("shopping", 200.01, purchases.get(1));
+            checkPurchase("Entertainment", 82.34, purchases.get(0));
+            checkPurchase("Shopping", 200.01, purchases.get(1));
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }

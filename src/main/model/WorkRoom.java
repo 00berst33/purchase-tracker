@@ -64,6 +64,7 @@ public class WorkRoom implements Writable {
         json.put("name", name);
         json.put("purchases", purchasesToJson());
         json.put("budget", budget);
+        json.put("money spent", moneySpent);
         return json;
     }
 

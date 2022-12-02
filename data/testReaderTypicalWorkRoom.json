@@ -1,11 +1,11 @@
 {
     "purchases": [
         {
-            "category": "dining",
+            "category": "Dining",
             "value": 45.4
         },
         {
-            "category": "groceries",
+            "category": "Groceries",
             "value": 900
         }
     ],

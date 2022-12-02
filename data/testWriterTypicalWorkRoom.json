@@ -1,11 +1,12 @@
 {
+    "money spent": 282.35,
     "purchases": [
         {
-            "category": "entertainment",
+            "category": "Entertainment",
             "value": 82.34
         },
         {
-            "category": "shopping",
+            "category": "Shopping",
             "value": 200.01
         }
     ],
