@@ -1,19 +1,18 @@
 package ui;
 
-import model.Purchase;
 import model.PurchaseTracker;
 
 import javax.swing.*;
 import java.awt.*;
 
 //represents a budget checker for printing budget and checking how close a user is to it
-public class BudgetChecker extends JInternalFrame {
+public class BudgetPrinter extends JInternalFrame {
     private static final int WIDTH = 295;
     private static final int HEIGHT = 200;
     private JTextArea textArea;
 
     //EFFECTS: constructs window in which the user's budget will be printed
-    public BudgetChecker(Component parent) {
+    public BudgetPrinter(Component parent) {
         super("Budget Checker", false, true, false, false);
         textArea = new JTextArea();
         textArea.setEditable(false);

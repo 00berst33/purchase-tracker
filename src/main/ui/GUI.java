@@ -153,7 +153,7 @@ public class GUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent evt) {
-            BudgetChecker bc = new BudgetChecker(GUI.this);
+            BudgetPrinter bc = new BudgetPrinter(GUI.this);
             desktop.add(bc);
             bc.print(pt);
         }
