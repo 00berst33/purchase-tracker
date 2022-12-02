@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.Purchase;
 import model.PurchaseTracker;
 import model.exception.MultipleDecimalPointsException;
@@ -186,7 +188,10 @@ public class GUI extends JFrame {
         }
     }
 
-    public static void main(String[] args) {
-        new GUI();
+    //EFFECTS: prints event log to console
+    public void printEventLog() {
+        for (Event next : EventLog.getInstance()) {
+            System.out.println(next.toString() + "\n\n");
+        }
     }
 }

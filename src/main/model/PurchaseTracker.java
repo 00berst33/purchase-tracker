@@ -39,12 +39,17 @@ public class PurchaseTracker {
     //EFFECTS: adds a given purchase to the current workroom
     public void addPurchase(Purchase purchase) {
         workRoom.addPurchase(purchase);
+
+        EventLog.getInstance().logEvent(new Event("Added purchase: $" + purchase.getValue() + " - "
+                + purchase.getCategory()));
     }
 
     //MODIFIES: this
     //EFFECTS: changes budget to a given amount
     public void changeBudget(double budget) {
         workRoom.changeBudget(budget);
+
+        EventLog.getInstance().logEvent(new Event("Changed budget to $" + budget));
     }
 
     // EFFECTS: saves the workroom to file
