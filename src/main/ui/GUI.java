@@ -180,6 +180,9 @@ public class GUI extends JFrame {
         public void actionPerformed(ActionEvent evt) {
             pt.loadFromFile();
             JOptionPane.showMessageDialog(null, "Loaded from File Successfully");
+
+            boolean over = pt.getBudget() - pt.getMoneySpent() < 0;
+            ip.updateIcon(over);
         }
     }
 

@@ -1,8 +1,15 @@
 {
-    "purchases": [{
-        "category": "Entertainment",
-        "value": 480.9
-    }],
+    "money spent": 1480.9,
+    "purchases": [
+        {
+            "category": "Entertainment",
+            "value": 480.9
+        },
+        {
+            "category": "Travel",
+            "value": 1000
+        }
+    ],
     "name": "User's workroom",
     "budget": 500
 }

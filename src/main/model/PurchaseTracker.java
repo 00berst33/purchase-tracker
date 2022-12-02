@@ -41,7 +41,7 @@ public class PurchaseTracker {
         workRoom.addPurchase(purchase);
     }
 
-    //MODIEFIES: this
+    //MODIFIES: this
     //EFFECTS: changes budget to a given amount
     public void changeBudget(double budget) {
         workRoom.changeBudget(budget);
@@ -53,7 +53,6 @@ public class PurchaseTracker {
             jsonWriter.open();
             jsonWriter.write(workRoom);
             jsonWriter.close();
-            System.out.println("Saved " + workRoom.getName() + " to " + JSON_STORE);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }
@@ -63,7 +62,6 @@ public class PurchaseTracker {
     public void loadFromFile() {
         try {
             workRoom = jsonReader.read();
-            System.out.println("Loaded " + workRoom.getName() + " from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
