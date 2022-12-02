@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+//represents a keypad that can be used to enter numbers
 public class KeyPad extends JPanel implements KeyListener {
     private static final String CLR_STR = "CLR";
     private JButton[] keys;
@@ -17,9 +18,8 @@ public class KeyPad extends JPanel implements KeyListener {
     private String number;
     private ClickHandler keyHandler;
 
-    /**
-     * Constructor creates keypad and code display area.
-     */
+
+    //EFFECTS: constructs a key pad and number display area
     public KeyPad() {
         number = "";
         keyHandler = new ClickHandler();
@@ -36,10 +36,8 @@ public class KeyPad extends JPanel implements KeyListener {
         add(hbox, BorderLayout.SOUTH);
     }
 
-    /**
-     * Gets code entered.
-     * @return  code entered
-     */
+
+    //EFFECTS: gets the number entered into the keypad
     public String getNumber() throws TooManySigFigsException, MultipleDecimalPointsException {
         int decimalPoints = number.length() - number.replace(".","").length();
         if (decimalPoints > 1) {
@@ -64,19 +62,16 @@ public class KeyPad extends JPanel implements KeyListener {
     }
 
 
-    /**
-     * Clears the code entered on the keypad
-     */
+
+    //EFFECTS: clears the number entered on the keypad
     public void clearNumber() {
         number = "";
         label.setText(getLabel());
         label.repaint();
     }
 
-    /**
-     * Adds buttons to button panel
-     * @param p  the button panel
-     */
+
+    //EFFECTS: adds buttons to button panel
     private void addButtons(JPanel p) {
         keys = new JButton[12];
 
@@ -97,17 +92,14 @@ public class KeyPad extends JPanel implements KeyListener {
         p.add(keys[11]);
     }
 
-    /**
-     * Gets label for code display area
-     * @return  label for code display area
-     */
+
+    //EFFECTS: gets label for purchase display area
     private String getLabel() {
         return number;
     }
 
-    /**
-     * A listener for key events.
-     */
+
+    //represents a listener for key events
     private class ClickHandler implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
