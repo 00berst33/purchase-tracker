@@ -3,10 +3,9 @@
 ## A spending tracker
 
 This project is an application for tracking the user's
-spending. Set a budget for the week or month, log 
-the amount and category of each transaction you make, track
-how far under or over your budget you are. It will be aimed more 
-at tracking the kind of small purchases that add up, like a coffee 
+spending. Set a budget, log the amount and category of each 
+transaction you make, track how far under or over your budget you are. 
+It is aimed more at tracking the kind of small purchases that add up, like a coffee 
 every other day or an Amazon order, rather than big payments like
 tuition and rent.
 
